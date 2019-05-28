@@ -1,0 +1,41 @@
+
+<div style="background:transparent !important" class="jumbotron text-center">
+  <div class="container">
+    <h1 class = "Title">Dungeons and Dragons Wiki</h1>
+  </div>
+</div>
+<div class="container">
+  <h1 class = "events"> Upcoming Events </h1>
+  <hr>
+  <table class="table">
+    <thead>
+      <th score="col"> Event Name </th>
+      <th scope="col"> Event Date </th>
+      <th score="col"> Start Time </th>
+      <th score="col"> End Time </th>
+      <th score="col"> Event Description </th>
+      <th score="col"> Location </th>
+      <th score="col"> Creator </th>
+    </thead>
+    <tbody>
+      {{#each results}}
+      <tr>
+        <td>{{this.eventName}}</td>
+        <td>{{this.eventDate}}</td>
+        <td>{{this.eventTimeStart}}</td>
+        <td>{{this.eventTimeEnd}}</td>
+        <td>{{this.eventDescription}}</td>
+        <td>{{this.eventLocation}}</td>
+        <td>{{this.eventCreator}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+
+  <!-- BLOCKQUOTE -->
+<!--  <blockquote class="blockquote-reverse">
+    <p>This site is great! It lets myself orginize things for our univserity club!</p>
+     <footer>Quote by <cite title="Pat Nucci">Patrick</cite></footer>
+  </blockquote> -->

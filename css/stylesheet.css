@@ -1,0 +1,72 @@
+*{
+  margin:0;
+  padding: 0;
+  user-select: none;
+}
+
+@font-face {
+    font-family: 'barbarianregular';
+    src: url('fonts/barbarian-webfont.woff2') format('woff2'),
+         url('fonts/barbarian-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+ h1.Title{
+text-align: center;
+color: white;
+font-family: 'barbarianregular';
+}
+
+body{
+  background-color: #26a655;
+}
+
+p.construction{
+  color: white;
+  text-align: center;
+  font-size: 40px;
+}
+
+.container nav.desk{
+  width: 100%;
+  background: black;
+  height:60px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);
+  position: fixed;
+  top: 60px;
+  left: 0;
+  color: white;
+}
+
+nav.desk ul{
+  list-style: none;
+  width: 75%;
+  height:60px;
+  margin: 0 auto;
+}
+
+nav.desk li {
+  width: 20%;
+  float: left;
+  text-align: center;
+  line-height: 60px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+nav ul li a{
+  text-decoration: none;
+}
+
+nav.desk ul li:hover{
+  background: #a3ada5;
+  color: black;
+}
+nav.desk ul li.active{
+  background: #a3ada5;
+  color: black;
+}
