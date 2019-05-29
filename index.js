@@ -23,7 +23,7 @@ app.use('/js', express.static('js'));
 
 app.use('/fonts', express.static('fonts'));
 
-app.set ('port', process.env.PORT || 3000);
+app.set ('port', process.env.PORT || 80);
 
 //app.set('views', __dirname + '/views');
 
