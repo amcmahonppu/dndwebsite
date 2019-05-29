@@ -41,10 +41,10 @@ app.use(function( req, res, next) {
 })
 
 var con = mysql.createConnection({
-  host: 'dndwebsite.alemcm9.dreamhosters.com',
-  user: 'alexmcmahon',
+  host: '167.99.228.233',
+  user: 'NewAdmin',
   password: 'Pittsburgh',
-  database: 'beechviewdndgroup',
+  database: 'DND',
   multipleStatements: true,
   dateStrings: true
 });
