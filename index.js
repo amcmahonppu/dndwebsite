@@ -23,7 +23,7 @@ app.use('/js', express.static('js'));
 
 app.use('/fonts', express.static('fonts'));
 
-app.set ('port', process.env.PORT || 80);
+app.set ('port', process.env.PORT || 3000);
 
 //app.set('views', __dirname + '/views');
 
@@ -70,12 +70,10 @@ app.get('/', function(req, res) {
   var dateAfter = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate());
   var dateBefore = ( "'" + date + "'" );
   var dateAfter = ( "'" + dateAfter + "'" );
-
-
   console.log(dateBefore);
   console.log(dateAfter);
   console.log(date);
-  var query = 'select eventName, eventDate, TIME_FORMAT(eventTimeStart, "%h %i %s %p") AS eventTimeStart, TIME_FORMAT(eventTimeEnd, "%h %i %s %p") AS eventTimeEnd, eventDescription, eventLocation, eventCreator  from eventInfo where DATE(eventDate) <= ' +  dateBefore  +  ' ;'
+  var query = 'select eventName, eventDate, eventCreatedOn, TIME_FORMAT(eventTimeStart, "%h %i %s %p") AS eventTimeStart, TIME_FORMAT(eventTimeEnd, "%h %i %s %p") AS eventTimeEnd, eventDescription, eventLocation, eventCreator  from eventInfo where DATE(eventDate) <= ' +  dateBefore  +  ' ;'
   console.log(query);
   con.query(query, function(error, results, fields){
     if(error) throw error;
@@ -86,4 +84,22 @@ app.get('/', function(req, res) {
       });
     console.log(results);
     });
+});
+
+app.get('/campaigns', function(req, res) {
+    res.render('campaigns',{
+      title: "Campaigns"
+    });
+});
+
+app.get('/campaignhistory', function(req, res) {
+  var query = "select campaignID, campaignName, DATE(campaignCreationDate) as campaignCreationDate, campaignStory from campaignInfo;"
+  con.query(query, function(error, results, fields){
+    if(error) throw error;
+    res.render('campaignhistory',{
+      title: "Campaigns",
+      results: results
+    });
+    console.log(results);
+  });
 });
