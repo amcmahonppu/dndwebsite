@@ -92,13 +92,30 @@ app.get('/campaigns', function(req, res) {
     });
 });
 
+app.get('/campaigndirectory', function(req, res) {
+  var query = 'select campaignID, campaignName, DATE(campaignCreationDate) as campaignCreationDate, campaignStory from campaignInfo;'
+  con.query(query, function(error, results, fields){
+    if(error) throw error;
+    res.render('campaigndirectory',{
+      title: "Campaigns",
+      results: results
+    });
+    console.log(results);
+  });
+});
+
 app.get('/campaignhistory', function(req, res) {
-  var query = "select campaignID, campaignName, DATE(campaignCreationDate) as campaignCreationDate, campaignStory from campaignInfo;"
+  var tmp = req.query.ID;
+  console.log(tmp);
+  var query = 'select campaignID, campaignName, DATE(campaignCreationDate) as campaignCreationDate, campaignStory from campaignInfo where campaignID = ' + tmp + ' ;'
   con.query(query, function(error, results, fields){
     if(error) throw error;
     res.render('campaignhistory',{
       title: "Campaigns",
-      results: results
+      results: results,
+      campaignCreationDate: results[0].campaignCreationDate,
+      campaignName: results[0].campaignName,
+      campaignStory: results[0].campaignStory
     });
     console.log(results);
   });

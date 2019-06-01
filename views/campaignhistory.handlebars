@@ -1,20 +1,7 @@
-<h1 class="text-center">Campaign Directory</h1>
-
-<div class="container">
-
-      <table class="table">
-        <thead>
-          <th scope="col"> Group Name </th>
-          <th scope="col"> Campaign Began On </th>
-          <th scope="col"> History of the Campaign</th>
-        </thead>
-      <tbody>
-        {{#each results}}
-        <tr>
-            <td>{{this.campaignName}}</td>
-            <td>{{this.campaignCreationDate}}</td>
-            <td><button type="submit" class="btn btn-light"><a href="campaign?ID={{this.campaignID}}">View</a></button></tr>
-        {{/each}}
-      </tbody>
-    </table>
+<h1 class="text-center">{{this.campaignName}}</h1>
+<br>
+<div class= "container">
+<p class="lead text-center">{{this.campaignName}} <small class="text-muted">was started on {{this.campaignCreationDate}}</small></p>
+<hr>
+<p class="lead">{{this.campaignStory}}</p>
 </div>
