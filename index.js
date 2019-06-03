@@ -23,7 +23,7 @@ app.use('/js', express.static('js'));
 
 app.use('/fonts', express.static('fonts'));
 
-app.set ('port', process.env.PORT || 3000);
+app.set ('port', process.env.PORT || 80);
 
 //app.set('views', __dirname + '/views');
 
@@ -41,8 +41,8 @@ app.use(function( req, res, next) {
 })
 
 var con = mysql.createConnection({
-  host: '167.99.228.233',
-  user: 'NewAdmin',
+  host: '178.62.222.204',
+  user: 'alexmcmahon',
   password: 'Pittsburgh',
   database: 'DND',
   multipleStatements: true,
