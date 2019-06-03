@@ -41,8 +41,8 @@ app.use(function( req, res, next) {
 })
 
 var con = mysql.createConnection({
-  host: '178.62.222.204',
-  user: 'alexmcmahon',
+  host: '134.209.74.146',
+  user: 'alex',
   password: 'Pittsburgh',
   database: 'DND',
   multipleStatements: true,
