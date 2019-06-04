@@ -120,3 +120,9 @@ app.get('/campaignhistory', function(req, res) {
     console.log(results);
   });
 });
+
+app.get('/characters', function(req, res){
+  res.render('characters',{
+    title: "Characters"
+  });
+});
