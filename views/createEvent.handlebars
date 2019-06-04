@@ -1,0 +1,36 @@
+<div class="container">
+  <br>
+  <form autocomplete="off" action="createEvent" id="tab" method="POST">
+    <label for="exampleFormControlInput1">Name</label>
+    <input type="text" name = "Name" class="form-control" id="exampleFormControlInput1">
+    <br>
+    <label for="exampleFormControlInput1">Event Name</label>
+    <input type="text" name = "EventName" class="form-control" id="exampleFormControlInput1">
+    <br>
+    <label for="exampleFormControlTextarea1">Event Description</label>
+    <textarea type="text" name = "EventDescription" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Be descriptive :)"></textarea>
+    <label for="exampleFormControlInput1">Event Location</label>
+    <input type="text" name = "EventLocation" class="form-control" id="exampleFormControlInput2">
+    <br>
+    <label for="exampleFormControlInput1">Date: </label>
+    <br>
+    <input autocomplete="off" id="datepicker" name="datepicker">
+    <br>
+    <br>
+
+      <label for="example-time-input" class="col-2 col-form-label">Start Time</label>
+      <div class="col-10">
+        <input name="startTime" class="form-control" type="time" value="13:45:00" id="example-time-input">
+      </div>
+      <br>
+      <label for="example-time-input" class="col-2 col-form-label">End Time</label>
+      <div class="col-10">
+        <input name="endTime" class="form-control" type="time" value="22:45:00" id="example-time-input">
+      </div>
+    <br>
+    <div>
+      <hr>
+      <button class="btn btn-primary" type="submit">Create Event</button>
+    </div>
+  </form>
+</div>

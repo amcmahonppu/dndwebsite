@@ -1,5 +1,5 @@
 
-<div style="background:transparent !important" class="jumbotron text-center">
+<div style="background:transparent" class="jumbotron text-center">
   <div class="container">
     <h1 class = "Title">Dungeons and Dragons Wiki</h1>
   </div>
@@ -12,10 +12,8 @@
       <th score="col"> Event Name </th>
       <th scope="col"> Event Date </th>
       <th score="col"> Start Time </th>
-      <th score="col"> End Time </th>
-      <th score="col"> Event Description </th>
       <th score="col"> Location </th>
-      <th score="col"> Creator </th>
+      <th score="col"> View Details</th>
     </thead>
     <tbody>
       {{#each results}}
@@ -23,14 +21,13 @@
         <td><!--<a href="eventInfo?ID={{this.eventName}}">-->{{this.eventName}}</td>
         <td>{{this.eventDate}}</td>
         <td>{{this.eventTimeStart}}</td>
-        <td>{{this.eventTimeEnd}}</td>
-        <td>{{this.eventDescription}}</td>
         <td><a href="https://www.google.com/maps/search/?api=1&query={{this.eventLocation}}">{{this.eventLocation}}</a></td>
-        <td>{{this.eventCreator}}</td>
+        <td><a href="eventinfo?ID={{this.eventId}}" class="btn btn-info" role="button">Details</a></tr>
       </tr>
       {{/each}}
     </tbody>
   </table>
+    <a href="createEvent" class=" addevent btn btn-success center-block"  style="max-width:200px" role="button">Create an event</a>
 </div>
 
 

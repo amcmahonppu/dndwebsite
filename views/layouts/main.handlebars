@@ -8,10 +8,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dungeons And Dragons Wiki</title>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
   <link href="css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
   <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+
+
+
+  <script>
+$( function() {
+  $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+} );
+
+</script>
+
+
 
   <style>
   @font-face {
@@ -32,6 +44,18 @@
 
   }
 
+  @font-face {
+    font-family: 'itikaf_freeregular';
+    src: url('itikaf_free-webfont.woff2') format('woff2'),
+         url('itikaf_free-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+  h1.campaigntitle{
+    font-family: 'itikaf_freeregular';
+  }
   h1.events{
     text-align: center;
     color: Black;
@@ -48,6 +72,26 @@
     margin-bottom:0;
     border-radius:0;
   }
+
+  p.when{
+    font-size: 25px;
+  }
+  p.start{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 17px;
+  }
+  p.end{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 17px;
+  }
+  p.description{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 17px;
+  }
+
   </style>
 <body>
   <nav class="navbar navbar-inverse">

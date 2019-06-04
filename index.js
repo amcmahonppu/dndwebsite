@@ -73,23 +73,23 @@ app.get('/', function(req, res) {
   console.log(dateBefore);
   console.log(dateAfter);
   console.log(date);
-  var query = 'select eventName, eventDate, eventCreatedOn, TIME_FORMAT(eventTimeStart, "%h %i %s %p") AS eventTimeStart, TIME_FORMAT(eventTimeEnd, "%h %i %s %p") AS eventTimeEnd, eventDescription, eventLocation, eventCreator  from eventInfo where DATE(eventDate) <= ' +  dateBefore  +  ' ;'
+  var query = 'select eventId, eventName, DATE(eventDate) as eventDate, eventCreatedOn, TIME_FORMAT(eventTimeStart, "%h %i %s %p") AS eventTimeStart, TIME_FORMAT(eventTimeEnd, "%h %i %s %p") AS eventTimeEnd, eventDescription, eventLocation, eventCreator  from eventInfo where DATE(eventDate) <= ' +  dateBefore  +  ' ;'
   console.log(query);
   con.query(query, function(error, results, fields){
     if(error) throw error;
 
-      res.render('home', {
-        title: "Dungeons Wiki",
-        results: results
-      });
-    console.log(results);
+    res.render('home', {
+      title: "Dungeons Wiki",
+      results: results
     });
+    console.log(results);
+  });
 });
 
 app.get('/campaigns', function(req, res) {
-    res.render('campaigns',{
-      title: "Campaigns"
-    });
+  res.render('campaigns',{
+    title: "Campaigns"
+  });
 });
 
 app.get('/campaigndirectory', function(req, res) {
@@ -121,8 +121,75 @@ app.get('/campaignhistory', function(req, res) {
   });
 });
 
+app.get('/eventinfo', function(req, res){
+  var tmp = req.query.ID;
+  var query ='select eventId, eventName, DATE(eventDate) as eventDate, DATE(eventCreatedOn) as eventCreatedOn, TIME_FORMAT(eventTimeStart, "%h %i %s %p") AS eventTimeStart, TIME_FORMAT(eventTimeEnd, "%h %i %s %p") AS eventTimeEnd, eventDescription, eventLocation, eventCreator  from eventInfo where eventId = ' +  tmp + ' ;'
+  con.query(query, function(error, results, fields){
+    if(error) throw error;
+    res.render('eventinfo', {
+      title: "event info",
+      results: results,
+      eventName: results[0].eventName,
+      eventDate: results[0].eventDate,
+      eventCreatedOn: results[0].eventCreatedOn,
+      eventTimeStart:results[0].eventTimeStart,
+      eventTimeEnd: results[0].eventTimeEnd,
+      eventDescription: results[0].eventDescription,
+      eventLocation: results[0].eventLocation,
+      eventCreator: results[0].eventCreator
+    });
+  });
+
+});
+
 app.get('/characters', function(req, res){
   res.render('characters',{
     title: "Characters"
+  });
+});
+
+app.get('/createEvent', function(req, res){
+  res.render('createEvent');
+});
+
+app.post('/createEvent', function(req, res){
+  var injson = {
+    "eventID": null,
+    "eventDate": req.body.datepicker,
+    "eventName": req.body.EventName,
+    "EventDescription": req.body.EventDescription,
+    "EventLocation": req.body.EventLocation,
+    "Name": req.body.Name,
+    "eventTimeStart": req.body.startTime,
+    "eventTimeEnd": req.body.endTime
+  }
+
+  var today = new Date();
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+var dateTime = date+' '+time;
+var eventTimeStart = req.body.datepicker+' '+req.body.startTime;
+var eventTimeEnd = req.body.datepicker+' '+req.body.endTime;
+  console.log(injson);
+  console.log(dateTime)
+
+  con.query("INSERT INTO eventInfo (eventName,eventDate,eventCreatedOn,EventTimeStart, eventTimeEnd, eventDescription, eventLocation, eventCreator) VALUES ('" + req.body.EventName + "', '" + req.body.datepicker+ "', '" + dateTime + "', '" + eventTimeStart + "', '" + eventTimeEnd + "', '" +  req.body.EventDescription + "',  '" + req.body.EventLocation + "',  '" + req.body.Name + "' );",injson, function(err, rows, fields) {
+
+    // build json result object
+    var outjson = {};
+    if (err) {
+      // query failed
+      console.log(err);
+      outjson.success = false;
+      outjson.message = "Query failed: " + err;
+    }
+    else {
+      // query successful
+      outjson.success = true;
+      outjson.message = "Query successful!";
+      console.log(rows);
+    }
+
+    res.redirect('/');
   });
 });
