@@ -1,1 +1,23 @@
-<h1 class="text-center"> Coming soon</h1>
+<h2 class="text-center"><a href="createcharacter" class="btn btn-info" role="button">Create Your Character</a></h2>
+<h2 class="text-center"><a class="btn btn-info" role="button" disabled>Download Blank PDF</a></h2> <!-- href="/downloadblank"  -->
+<hr>
+<div class="container">
+<table class="table">
+  <thead>
+    <th score="col"> Character Name </th>
+    <th scope="col"> Character Race </th>
+    <th score="col"> Character Class</th>
+    <th score="col"> Character PDF</th>
+  </thead>
+  <tbody>
+    {{#each results}}
+    <tr>
+      <td>{{this.characterName}}</td>
+      <td>{{this.characterRace}}</td>
+      <td>{{this.characterClass}}</td>
+      <td><a href="download?ID={{this.characterId}}">Download PDF</a>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+</div>

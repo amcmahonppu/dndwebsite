@@ -7,6 +7,7 @@ var mysql = require("mysql");
 var credentials = require("./credentials");
 var qs = require("querystring");
 var session = require('express-session');
+var io = require('socket.io')(http);
 
 var handlebars = require('express-handlebars')
 .create({ defaultLayout:'main'});
@@ -17,11 +18,13 @@ app.use(express.static(__dirname + '/public'));
 
 app.use('/css', express.static('css'));
 
-app.use('/img', express.static('img'));
+app.use('/images', express.static('images'));
 
 app.use('/js', express.static('js'));
 
 app.use('/fonts', express.static('fonts'));
+
+app.use('/pdf', express.static(__dirname + '/pathToPDF'));
 
 app.set ('port', process.env.PORT || 3000);
 
@@ -143,9 +146,33 @@ app.get('/eventinfo', function(req, res){
 });
 
 app.get('/characters', function(req, res){
-  res.render('characters',{
-    title: "Characters"
-  });
+  var query = 'select * from characterInfo;'
+  con.query(query, function(error, results, fields){
+    if(error) throw error;
+    res.render('characters', {
+      title: "Characters",
+      results: results
+    })
+    console.log(results);
+  })
+});
+
+app.get('/download', function(req, res){
+  var query = 'select characterName from characterInfo where characterId = ' +  req.query.ID + ' ;'
+  con.query(query, function(error, results, fields){
+    if(error) throw error;
+    res.download(__dirname + '/pdf/'+ results[0].characterName +'.pdf', results[0].characterName +'.pdf', {
+      title: "Characters",
+      results: results
+    })
+    console.log(results);
+  })
+});
+
+app.get('/downloadblank', function(req, res){
+
+    res.download(__dirname + '/pdf/.pdf', '.pdf');
+
 });
 
 app.get('/createEvent', function(req, res){
@@ -165,11 +192,11 @@ app.post('/createEvent', function(req, res){
   }
 
   var today = new Date();
-var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-var dateTime = date+' '+time;
-var eventTimeStart = req.body.datepicker+' '+req.body.startTime;
-var eventTimeEnd = req.body.datepicker+' '+req.body.endTime;
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  var dateTime = date+' '+time;
+  var eventTimeStart = req.body.datepicker+' '+req.body.startTime;
+  var eventTimeEnd = req.body.datepicker+' '+req.body.endTime;
   console.log(injson);
   console.log(dateTime)
 
@@ -193,3 +220,9 @@ var eventTimeEnd = req.body.datepicker+' '+req.body.endTime;
     res.redirect('/');
   });
 });
+
+app.get('/createcharacter', function(req, res){
+  res.render('createcharacter', {
+    title: "Create your character"
+  })
+})

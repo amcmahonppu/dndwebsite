@@ -1,98 +1,105 @@
 
 
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 //EN">
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dungeons And Dragons Wiki</title>
+  <title>{{title}}</title>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
   <link href="css/bootstrap.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
   <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
 
+<script src="js/socket.io.js"></script>
 
 
   <script>
-$( function() {
-  $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
-} );
+  $( function() {
+    $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+  } );
 
 </script>
 
 
 
-  <style>
-  @font-face {
-    font-family: 'barbarianregular';
-    src: url('fonts/barbarian-webfont.woff2') format('woff2'),
-    url('fonts/barbarian-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-  }
-
-  @font-face {
-    font-family: 'dndcregular';
-    src: url('fonts/dndc-webfont.woff2') format('woff2'),
-    url('fonts/dndc-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-  }
-
-  @font-face {
-    font-family: 'itikaf_freeregular';
-    src: url('fonts/itikaf_free-webfont.woff2') format('woff2'),
-         url('fonts/itikaf_free-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+<style>
+@font-face {
+  font-family: 'barbarianregular';
+  src: url('fonts/barbarian-webfont.woff2') format('woff2'),
+  url('fonts/barbarian-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 
 }
 
-  h1.campaigntitle{
-    font-family: 'itikaf_freeregular';
-  }
-  h1.events{
-    text-align: center;
-    color: Black;
-    font-family: 'dndcregular';
-  }
+@font-face {
+  font-family: 'dndcregular';
+  src: url('fonts/dndc-webfont.woff2') format('woff2'),
+  url('fonts/dndc-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 
-  h1.Title{
-    text-align: center;
-    color: Black;
-    font-family: 'barbarianregular';
-  }
+}
 
-  .navbar{
-    margin-bottom:0;
-    border-radius:0;
-  }
+@font-face {
+  font-family: 'itikaf_freeregular';
+  src: url('fonts/itikaf_free-webfont.woff2') format('woff2'),
+  url('fonts/itikaf_free-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 
-  p.when{
-    font-size: 25px;
-  }
-  p.start{
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: 17px;
-  }
-  p.end{
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: 17px;
-  }
-  p.description{
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: 17px;
-  }
+}
 
-  </style>
+h1.campaigntitle{
+  font-family: 'itikaf_freeregular';
+}
+h1.events{
+  text-align: center;
+  color: Black;
+  font-family: 'dndcregular';
+}
+
+h1.Title{
+  text-align: center;
+  color: Black;
+  font-family: 'barbarianregular';
+}
+
+.navbar{
+  margin-bottom:0;
+  border-radius:0;
+}
+
+p.when{
+  font-size: 25px;
+}
+p.start{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 17px;
+}
+p.end{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 17px;
+}
+p.description{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 17px;
+}
+img.createcharacter{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+
+}
+</style>
 <body>
   <nav class="navbar navbar-inverse">
     <div class="container">
