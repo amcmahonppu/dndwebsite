@@ -171,7 +171,7 @@ app.get('/download', function(req, res){
 
 app.get('/downloadblank', function(req, res){
 
-    res.download(__dirname + '/pdf/.pdf', '.pdf');
+    res.download(__dirname + '/pdf/blankcharacter.pdf', 'blankcharacter.pdf');
 
 });
 
